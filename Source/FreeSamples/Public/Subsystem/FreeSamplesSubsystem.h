@@ -3,6 +3,10 @@
 #include "CoreMinimal.h"
 #include "FGSaveInterface.h"
 #include "Subsystem/ModSubsystem.h"
+#include "Subsystem/SubsystemActorManager.h"
+#include "FGSchematic.h"
+#include "FGRecipe.h"
+#include "Resources/FGItemDescriptor.h"
 
 #include "FreeSamples.h"
 #include "FreeSamplesSubsystem.generated.h"
@@ -26,6 +30,34 @@ class FREESAMPLES_API AFreeSamplesSubsystem : public AModSubsystem, public IFGSa
 	// End IFSaveInterface
 
 public:
+
+	// Schematics in this list will be ignored by Free Sample consideration
+	// Will be combined with the user's chosen config for the mod at runtime
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
+		TSet<TSubclassOf<UFGSchematic>> BlacklistedSchematics;
+
+	// Schematics in this list will be ignored by Free Sample consideration
+	// Will be combined with the user's chosen config for the mod at runtime
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
+		TSet<TSubclassOf<UFGRecipe>> BlacklistedRecipes;
+
+	// Schematics in this list will be ignored by Free Sample consideration
+	// Will be combined with the user's chosen config for the mod at runtime
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
+		TSet<TSubclassOf<UFGItemDescriptor>> BlacklistedItems;
+
+	// Will radioactive items be excluded from free samples
+	// Set from the user's config but you can be overwritten at runtime
+	UPROPERTY(BlueprintReadWrite)
+		bool ExcludeRadioactiveSamples;
+
+public:
+	// C++ getter for the subsystem - the real one is implemented in Blueprint,
+	// so calling this function gets you the "real one" that inherits from the
+	// C++ class and not the C++ abstract class.
+	UFUNCTION(BlueprintPure, Category = "FreeSamples", DisplayName = "GetFreeSamplesSubsystem", Meta = (DefaultToSelf = "WorldContext"))
+		static AFreeSamplesSubsystem* Get(class UObject* WorldContext);
+
 	// Trigger trying to claim samples for a player.
 	// Claims as many packages as they have space for in their entirety.
 	// Returns false if at least one of the packages couldn't fit.

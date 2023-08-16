@@ -7,7 +7,7 @@
 #include "FreeSampleData.generated.h"
 
 /**
- * 
+ * TODO unused
  */
 UCLASS()
 class FREESAMPLES_API UFreeSampleData : public UUserDefinedStruct

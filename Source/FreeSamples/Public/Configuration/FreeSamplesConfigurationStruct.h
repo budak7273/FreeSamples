@@ -9,6 +9,7 @@ struct FFreeSamplesConfigurationStruct_Equipment;
 struct FFreeSamplesConfigurationStruct_Buildings;
 struct FFreeSamplesConfigurationStruct_Parts;
 struct FFreeSamplesConfigurationStruct_Exclude;
+struct FFreeSamplesConfigurationStruct_Debugging;
 
 USTRUCT(BlueprintType)
 struct FFreeSamplesConfigurationStruct_Global {
@@ -56,13 +57,27 @@ struct FFreeSamplesConfigurationStruct_Exclude {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite)
-    TArray<FString> SkipSchematics;
+    bool SkipRadioactive;
 
     UPROPERTY(BlueprintReadWrite)
     TArray<FString> SkipRecipes;
 
     UPROPERTY(BlueprintReadWrite)
     TArray<FString> SkipItems;
+
+    UPROPERTY(BlueprintReadWrite)
+    TArray<FString> SkipSchematics;
+
+    UPROPERTY(BlueprintReadWrite)
+    bool _HasBeenEditedByUser;
+};
+
+USTRUCT(BlueprintType)
+struct FFreeSamplesConfigurationStruct_Debugging {
+    GENERATED_BODY()
+public:
+    UPROPERTY(BlueprintReadWrite)
+    bool EnableDebug;
 };
 
 /* Struct generated from Mod Configuration Asset '/FreeSamples/Configuration/FreeSamplesConfiguration' */
@@ -84,6 +99,9 @@ public:
 
     UPROPERTY(BlueprintReadWrite)
     FFreeSamplesConfigurationStruct_Exclude Exclude;
+
+    UPROPERTY(BlueprintReadWrite)
+    FFreeSamplesConfigurationStruct_Debugging Debugging;
 
     /* Retrieves active configuration value and returns object of this struct containing it */
     static FFreeSamplesConfigurationStruct GetActiveConfig() {

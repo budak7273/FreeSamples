@@ -2,16 +2,17 @@
 
 **Multiplayer compatible!**
 
-<!-- TODO unhide the mod
+<!-- TODO test in real multiplayer to be sure states are persisting -->
 
-TODO test with Awesome Shop -->
+<!-- TODO script schematics are turning into nullptr, switch to soft reference? -->
 
 Whenever you unlock a technology that grants you a recipe,
 receive a configurable amount of 'free samples' of that recipe.
 For equipment and component crafting recipes, this is the output product.
 For buildings, this is the ingredients for the building.
 Every player in multiplayer gets a copy of the free sample items.
-Compatible with all mods that add recipes.
+Should be compatible with all mods that add recipes and schematics,
+including those that do so via runtime content generation like [ContentLib](https://ficsit.app/mod/ContentLib).
 
 The free sample packages will be inserted directly into your player inventory.
 If there isn't enough space, they will be held for claiming later.
@@ -43,8 +44,7 @@ Customize the following via the mod's config options:
 
 None, but the following base-game bugs affect this mod's functionality:
 
-- [Clients do not receive the correct chat messages](TODO QA LINK)
-<!-- https://discord.com/channels/555424930502541343/1036634533077979146/1141458437021106196 -->
+- [Multiplayer clients do not display the correct message content from code-generated chat messages](https://discord.com/channels/555424930502541343/1036634533077979146/1141458437021106196)
 
 ## For Developers
 
@@ -52,7 +52,9 @@ This mod automatically functions with every schematic except those granted befor
 
 The source code is public.
 
-By enabling debug mode you gain access to the chat command `/cc_resetSamples` which will reset the subsystem's saved reward data. This is useful for testing the mod's functionality. Using [Mam Enhancer](https://ficsit.app/mod/MAMTips)'s debug mode makes it very easy to grant/revoke schematics for testing the exclude lists, for example.
+By enabling debug mode you gain access to the chat command `/cc_resetSamples` which will reset the subsystem's saved reward data, as well as the caller's. This is useful for testing the mod's functionality.
+You can also use `/cc_samplesDebugData` to send info to the logs about the global and command caller's samples.
+Using [Mam Enhancer](https://ficsit.app/mod/MAMTips)'s debug mode makes it very easy to grant/revoke schematics for testing the exclude lists, for example.
 
 This mod implements some features in C++ to allow for C++ only mods to affect the mod's configuration.
 Highlights include:

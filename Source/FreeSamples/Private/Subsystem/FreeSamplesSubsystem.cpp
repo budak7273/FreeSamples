@@ -12,6 +12,8 @@ AFreeSamplesSubsystem* AFreeSamplesSubsystem::Get(UObject* WorldContext) {
 	if (WorldContext->GetWorld()) {
 		TArray<AActor*> arr;
 		// Relies on the fact that nothing has spawned the C++ version before
+		// The blueprint one descends from this so it is found instead
+		// This would break if a C++ version was spawned or persisted via save game
 		UGameplayStatics::GetAllActorsOfClass(WorldContext->GetWorld(), AFreeSamplesSubsystem::StaticClass(), arr);
 		if (arr.IsValidIndex(0)) {
 			AFreeSamplesSubsystem* out = Cast<AFreeSamplesSubsystem>(arr[0]);

@@ -1,3 +1,8 @@
+Whenever you unlock a technology that grants you a recipe, receive a configurable amount of 'free samples' items of that recipe. Multiplayer supported!
+
+
+
+
 # Free Samples
 
 **Multiplayer compatible!**

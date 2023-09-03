@@ -56,7 +56,7 @@ None, but the following base-game bugs affect this mod's functionality:
 
 This mod automatically functions with every schematic except those granted before the subsystem initializes,
 so schematics rewarded very early (ex. Starting Recipes) will not be considered for samples.
-You can also add schematics, recipes, and items to the mod's exclude lists via the C++ or Blueprint API.
+You can also add schematics, recipes, and items to the mod's exclude lists via the C++ or Blueprint API, or via specially-named fields on your Game World Module (see dedicated header below).
 
 The source code is public.
 
@@ -71,7 +71,34 @@ Highlights include:
 - The config struct C++ header is generated
 - Mods can interact with the subsystem's ignore lists to add/remove items from them separate from the user's selected configuration options
 
-Future plans:
+### Zero Dependency Interaction
+
+If you don't want your mod's code to in any way reference FreeSamples but you still wish to influence its behavior,
+you can fields on your mod's Root Game World Module with specific names and types.
+FreeSamples will check all mods' Root Game World Modules for fields of the following names at Game World Module Initialization time:
+
+- `TArray<TSoftClassPtr<UObject>> FreeSamplesAPI_SkipSchematics`
+- `TArray<TSoftClassPtr<UObject>> FreeSamplesAPI_SkipRecipes`
+- `TArray<TSoftClassPtr<UObject>> FreeSamplesAPI_SkipItems`
+- `TMap<TSoftClassPtr<UObject>, int> FreeSamplesAPI_ItemQuantityOverrides`
+
+If any of these fields are found, the mod will use them to determine which
+schematics, recipes, and items to skip when generating samples,
+and will use the quantity overrides to determine how many of each item to give.
+
+In order to interface with FreeSamples in this manner,
+simply create a field on your mod's Root Game World Module with one of the above names
+and populate it with the values you wish to be skipped or overridden.
+FreeSamples will use reflection to find and process these values at runtime.
+Do note that the game will crash if you have a field with this name that does not match the type above.
+(ex. an array of Booleans instead of Soft Class Pointers)
+
+Soft Class References are used so that runtime-generated content (ex. ContentLib) can be listed before it is created.
+
+Example: (TMap of `TSoftClassPtr<UFGItemDescriptor>` to Integer in blueprint)
+
+![Power Shard example](https://i.imgur.com/8S8nUOV.png)
+
+## Future Plans
 
 - Ability to add arbitrary item packages to the sample system (that aren't associated with schematics)
-- Reflection to check other mods' Game World Modules for a named field containing data schematics/items/recipes to ignore so they don't need to directly reference this mod in any way

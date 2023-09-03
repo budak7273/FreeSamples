@@ -31,20 +31,25 @@ class FREESAMPLES_API AFreeSamplesSubsystem : public AModSubsystem, public IFGSa
 
 public:
 
-	// Schematics in this list will be ignored by Free Sample consideration
+	// Schematics in this set will be ignored for Free Sample consideration
 	// Will be combined with the user's chosen config for the mod at runtime
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
 		TSet<TSubclassOf<UFGSchematic>> BlacklistedSchematics;
 
-	// Schematics in this list will be ignored by Free Sample consideration
+	// Recipes in this set will be ignored for Free Sample consideration
 	// Will be combined with the user's chosen config for the mod at runtime
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
 		TSet<TSubclassOf<UFGRecipe>> BlacklistedRecipes;
 
-	// Schematics in this list will be ignored by Free Sample consideration
+	// Items in this set will be ignored for Free Sample consideration
 	// Will be combined with the user's chosen config for the mod at runtime
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
 		TSet<TSubclassOf<UFGItemDescriptor>> BlacklistedItems;
+
+	// Items in this map will always be given in the mapped quantity when given as samples
+	// regardless of the user's settings, unless the user has the item's category set to 0 samples
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
+		TMap<TSubclassOf<UFGItemDescriptor>, int> QuantityOverrideItems;
 
 	// Will radioactive items be excluded from free samples
 	// Set from the user's config but you can be overwritten at runtime

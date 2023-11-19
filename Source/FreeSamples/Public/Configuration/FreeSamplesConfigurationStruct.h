@@ -16,16 +16,16 @@ struct FFreeSamplesConfigurationStruct_Global {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite)
-    bool Enabled;
+    bool Enabled{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool PerPlayer;
+    bool PerPlayer{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool RequireCommand;
+    bool RequireCommand{};
 
     UPROPERTY(BlueprintReadWrite)
-    float UnclaimedUpdateInterval;
+    float UnclaimedUpdateInterval{};
 };
 
 USTRUCT(BlueprintType)
@@ -33,7 +33,7 @@ struct FFreeSamplesConfigurationStruct_Equipment {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite)
-    int32 Quantity;
+    int32 Quantity{};
 };
 
 USTRUCT(BlueprintType)
@@ -41,7 +41,7 @@ struct FFreeSamplesConfigurationStruct_Buildings {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite)
-    int32 Quantity;
+    int32 Quantity{};
 };
 
 USTRUCT(BlueprintType)
@@ -49,7 +49,7 @@ struct FFreeSamplesConfigurationStruct_Parts {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite)
-    int32 Quantity;
+    int32 Quantity{};
 };
 
 USTRUCT(BlueprintType)
@@ -57,19 +57,19 @@ struct FFreeSamplesConfigurationStruct_Exclude {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite)
-    bool SkipRadioactive;
+    bool SkipRadioactive{};
 
     UPROPERTY(BlueprintReadWrite)
-    TArray<FString> SkipRecipes;
+    TArray<FString> SkipRecipes{};
 
     UPROPERTY(BlueprintReadWrite)
-    TArray<FString> SkipItems;
+    TArray<FString> SkipItems{};
 
     UPROPERTY(BlueprintReadWrite)
-    TArray<FString> SkipSchematics;
+    TArray<FString> SkipSchematics{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool _HasBeenEditedByUser;
+    bool _HasBeenEditedByUser{};
 };
 
 USTRUCT(BlueprintType)
@@ -77,7 +77,7 @@ struct FFreeSamplesConfigurationStruct_Debugging {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite)
-    bool EnableDebug;
+    bool EnableDebug{};
 };
 
 /* Struct generated from Mod Configuration Asset '/FreeSamples/Configuration/FreeSamplesConfiguration' */
@@ -86,29 +86,31 @@ struct FFreeSamplesConfigurationStruct {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite)
-    FFreeSamplesConfigurationStruct_Global Global;
+    FFreeSamplesConfigurationStruct_Global Global{};
 
     UPROPERTY(BlueprintReadWrite)
-    FFreeSamplesConfigurationStruct_Equipment Equipment;
+    FFreeSamplesConfigurationStruct_Equipment Equipment{};
 
     UPROPERTY(BlueprintReadWrite)
-    FFreeSamplesConfigurationStruct_Buildings Buildings;
+    FFreeSamplesConfigurationStruct_Buildings Buildings{};
 
     UPROPERTY(BlueprintReadWrite)
-    FFreeSamplesConfigurationStruct_Parts Parts;
+    FFreeSamplesConfigurationStruct_Parts Parts{};
 
     UPROPERTY(BlueprintReadWrite)
-    FFreeSamplesConfigurationStruct_Exclude Exclude;
+    FFreeSamplesConfigurationStruct_Exclude Exclude{};
 
     UPROPERTY(BlueprintReadWrite)
-    FFreeSamplesConfigurationStruct_Debugging Debugging;
+    FFreeSamplesConfigurationStruct_Debugging Debugging{};
 
     /* Retrieves active configuration value and returns object of this struct containing it */
-    static FFreeSamplesConfigurationStruct GetActiveConfig() {
+    static FFreeSamplesConfigurationStruct GetActiveConfig(UObject* WorldContext) {
         FFreeSamplesConfigurationStruct ConfigStruct{};
         FConfigId ConfigId{"FreeSamples", ""};
-        UConfigManager* ConfigManager = GEngine->GetEngineSubsystem<UConfigManager>();
-        ConfigManager->FillConfigurationStruct(ConfigId, FDynamicStructInfo{FFreeSamplesConfigurationStruct::StaticStruct(), &ConfigStruct});
+        if (const UWorld* World = GEngine->GetWorldFromContextObject(WorldContext, EGetWorldErrorMode::ReturnNull)) {
+            UConfigManager* ConfigManager = World->GetGameInstance()->GetSubsystem<UConfigManager>();
+            ConfigManager->FillConfigurationStruct(ConfigId, FDynamicStructInfo{FFreeSamplesConfigurationStruct::StaticStruct(), &ConfigStruct});
+        }
         return ConfigStruct;
     }
 };

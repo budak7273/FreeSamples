@@ -14,7 +14,7 @@ unlocking the Jump Pads T2 milestone will give you the ingredients to construct 
 
 The free sample packages will be inserted directly into your player inventory.
 If there isn't enough space, they will be held for claiming later.
-You can also opt to require manually claiming them via the `/claimSamples` chat command.
+You can also opt to require manually claiming them via the `/claimSamples` chat command, and use `/claimSamples force` to drop them near you in crates if they can't fit in your inventory.
 You can see what packages you have pending via the `/listUnclaimed` chat command.
 
 Should be compatible with all mods that add recipes and schematics,
@@ -36,6 +36,9 @@ Customize the following via the mod's config options:
   - By default: Items automatically given
 - How often the mod will attempt to give you items (or remind you about items you haven't claimed yet)
   - By default: Every 60 seconds, or whenever a new schematic is unlocked.
+  - Set to 601 seconds to turn off the reminder timer.
+- If 'force claimed' samples will be dropped as crates or item pickups
+  - By default: Dropped as crates
 - If the mod will give you radioactive items as samples
   - By default: Exclude radioactive items
 - Specific Schematics, Recipes, and Items to exclude from free sample consideration

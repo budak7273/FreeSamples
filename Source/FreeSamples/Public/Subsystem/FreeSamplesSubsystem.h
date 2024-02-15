@@ -66,9 +66,10 @@ public:
 	// Trigger trying to claim samples for a player.
 	// Claims as many packages as they have space for in their entirety.
 	// Returns false if at least one of the packages couldn't fit.
+	// If dropOnGround is true, claims all items regardless of player inventory size, dropping the extras at their feet in the world.
 	// The packages that couldn't fit remain in the queue. Those that did fit are moved to Claimed.
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-		bool PlayerClaimSamples(bool manuallyTriggered, APlayerState* player);
+		bool PlayerClaimSamples(bool manuallyTriggered, APlayerState* player, bool dropExcessOnGround);
 
 	// TODO add schematic to internal queue
 	// Returns true if added, false if was already present or already awarded in the past

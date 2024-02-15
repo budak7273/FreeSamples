@@ -26,6 +26,9 @@ public:
 
     UPROPERTY(BlueprintReadWrite)
     float UnclaimedUpdateInterval{};
+
+    UPROPERTY(BlueprintReadWrite)
+    bool UseDroppedItemsInsteadOfCrates{};
 };
 
 USTRUCT(BlueprintType)

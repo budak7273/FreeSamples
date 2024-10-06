@@ -61,7 +61,7 @@ public:
 	// so calling this function gets you the "real one" that inherits from the
 	// C++ class and not the C++ abstract class.
 	UFUNCTION(BlueprintPure, Category = "FreeSamples", DisplayName = "GetFreeSamplesSubsystem", Meta = (DefaultToSelf = "WorldContext"))
-		static AFreeSamplesSubsystem* Get(class UObject* WorldContext);
+		static AFreeSamplesSubsystem* Get(class UWorld* WorldContext);
 
 	// Trigger trying to claim samples for a player.
 	// Claims as many packages as they have space for in their entirety.

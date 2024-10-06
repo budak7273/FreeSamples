@@ -5,8 +5,12 @@ bool AFreeSamplesSubsystem::PlayerClaimSamples_Implementation(bool manuallyTrigg
 	return false;
 }
 
-AFreeSamplesSubsystem* AFreeSamplesSubsystem::Get(UObject* WorldContext) {
-	// This approach would break if a C++ version was spawned or was persisted via save game
-	// The blueprint version descends from this class, so it gets found instead as long as it got spawned properly
-	return Cast<AFreeSamplesSubsystem>(UGameplayStatics::GetActorOfClass(WorldContext, StaticClass()));
+AFreeSamplesSubsystem* AFreeSamplesSubsystem::Get(UWorld* world) {
+	USubsystemActorManager* SubsystemActorManager = world->GetSubsystem<USubsystemActorManager>();
+	fgcheck(SubsystemActorManager);
+
+	AFreeSamplesSubsystem* freeSamplesSubsystem = SubsystemActorManager->GetSubsystemActor<AFreeSamplesSubsystem>();
+	fgcheck(freeSamplesSubsystem);
+
+	return freeSamplesSubsystem;
 }

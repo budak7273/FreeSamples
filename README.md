@@ -2,6 +2,8 @@
 
 **Multiplayer compatible!**
 
+_If you enjoy my work, please consider donating to my [completely optional tip jar](https://ko-fi.com/robb4)._
+
 Whenever you unlock a technology that grants you a recipe,
 receive a configurable amount of 'free samples' of that recipe.
 For equipment and component crafting recipes, this is the output product.
@@ -58,7 +60,7 @@ None, but the following base-game bugs affect this mod's functionality:
 ## For Developers
 
 This mod automatically functions with every schematic except those granted before the subsystem initializes,
-so schematics rewarded very early (ex. Starting Recipes) will not be considered for samples.
+so schematics rewarded very early (ex. `Schematic_StartingRecipes`) will not be considered for samples.
 You can also add schematics, recipes, and items to the mod's exclude lists via the C++ or Blueprint API, or via specially-named fields on your Game World Module (see dedicated header below).
 
 The source code is public.
@@ -77,7 +79,11 @@ Highlights include:
 ### Zero Dependency Interaction
 
 If you don't want your mod's code to in any way reference FreeSamples but you still wish to influence its behavior,
-you can fields on your mod's Root Game World Module with specific names and types.
+there are two options:
+
+First, you can use the `FreeSamples.Skip` [Content Tag](https://docs.ficsit.app/satisfactory-modding/latest/Development/ModLoader/ContentTagRegistry.html) to mark schematics, recipes, and items that you don't want to be considered for free samples.
+
+Second, you can create fields on your mod's Root Game World Module with specific names and types.
 FreeSamples will check all mods' Root Game World Modules for fields of the following names at Game World Module Initialization time:
 
 - `TArray<TSoftClassPtr<UObject>> FreeSamplesAPI_SkipSchematics`
@@ -105,3 +111,4 @@ Example: (TMap of `TSoftClassPtr<UFGItemDescriptor>` to Integer in blueprint)
 ## Future Plans
 
 - Ability to add arbitrary item packages to the sample system (that aren't associated with schematics)
+- Delivery directly to the Dimensional Depot

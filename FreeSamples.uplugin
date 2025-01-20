@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.4.0",
-	"SemVersion": "1.4.0",
+	"VersionName": "1.4.1",
+	"SemVersion": "1.4.1",
 	"FriendlyName": "FreeSamples",
 	"Description": "Recieve some free sample items when you unlock new technologies",
 	"Category": "Modding",

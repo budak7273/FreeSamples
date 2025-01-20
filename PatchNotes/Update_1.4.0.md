@@ -1,4 +1,4 @@
-Satiafactory 1.0 support. Added ContentTag support. Updated mod icon.
+Satisfactory 1.0 support. Added ContentTag support. Updated mod icon.
 
 
 

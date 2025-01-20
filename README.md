@@ -65,8 +65,15 @@ You can also add schematics, recipes, and items to the mod's exclude lists via t
 
 The source code is public.
 
-By enabling debug mode you gain access to the chat command `/cc_resetSamples` which will reset the subsystem's saved reward data, as well as the caller's. This is useful for testing the mod's functionality.
-You can also use `/cc_samplesDebugData` to send info to the logs about the global and command caller's samples.
+By enabling debug mode you gain access to the following chat commands:
+
+- `/cc_directClaimSample <schematicSoftClassPath> [force?]`
+  triggers the sample claim code for a schematic without checking or recording it to the player's claim records.
+  Example: `/cc_directClaimSample /Game/FactoryGame/Schematics/Research/AlienTech_RS/Research_Alien_PowerBooster.Research_Alien_PowerBooster_C true`
+  will drop the samples from the "Power Augmenter" schematic near you.
+- `/cc_resetSamples` resets the subsystem's saved reward data, as well as the caller's.
+- `/cc_samplesDebugData` sends info to the logs about the global and command caller's samples.
+
 Using [Mam Enhancer](https://ficsit.app/mod/MAMTips)'s debug mode makes it very easy to grant/revoke schematics for testing the exclude lists, for example.
 
 This mod implements some features in C++ to allow for C++ only mods to affect the mod's configuration.

@@ -1,10 +1,10 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.4.1",
-	"SemVersion": "1.4.1",
+	"VersionName": "1.4.2",
+	"SemVersion": "1.4.2",
 	"FriendlyName": "FreeSamples",
-	"Description": "Recieve some free sample items when you unlock new technologies",
+	"Description": "Receive some free sample items when you unlock new technologies",
 	"Category": "Modding",
 	"CreatedBy": "Robb",
 	"CreatedByURL": "",
@@ -25,7 +25,7 @@
 	"Plugins": [
 		{
 			"Name": "SML",
-			"SemVersion": "^3.9.0",
+			"SemVersion": "^3.9.1",
 			"Enabled": true
 		}
 	],

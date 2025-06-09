@@ -37,12 +37,12 @@ void OnDispatchOverrideWith(CallScope<void(*)(APlayerState*, APlayerState*)>& sc
 void ApplyPlayerStateHooks() {
 	// TODO once SF 1.1 is released there will be a nice bp-accessible entry point for this and we won't have to hook it from c++
 
-	AFGPlayerState* SampleObject1 = GetMutableDefault<AFGPlayerState>();
-	SUBSCRIBE_METHOD_VIRTUAL(AFGPlayerState::CopyProperties, SampleObject1, &OnFgCopyProperties);
+	//AFGPlayerState* SampleObject1 = GetMutableDefault<AFGPlayerState>();
+	//SUBSCRIBE_METHOD_VIRTUAL(AFGPlayerState::CopyProperties, SampleObject1, &OnFgCopyProperties);
 
-	APlayerState* SampleObject2 = GetMutableDefault<APlayerState>();
-	//SUBSCRIBE_METHOD_VIRTUAL(APlayerState::DispatchCopyProperties, SampleObject2, &OnCopyProperties);
-	SUBSCRIBE_METHOD_VIRTUAL(APlayerState::DispatchOverrideWith, SampleObject2, &OnDispatchOverrideWith);
+	//APlayerState* SampleObject2 = GetMutableDefault<APlayerState>();
+	////SUBSCRIBE_METHOD_VIRTUAL(APlayerState::DispatchCopyProperties, SampleObject2, &OnCopyProperties);
+	//SUBSCRIBE_METHOD_VIRTUAL(APlayerState::DispatchOverrideWith, SampleObject2, &OnDispatchOverrideWith);
 }
 
 void FFreeSamplesModule::StartupModule()

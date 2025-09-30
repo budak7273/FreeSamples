@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
 	"Version": 2,
-	"VersionName": "2.0.0",
-	"SemVersion": "2.0.0",
+	"VersionName": "2.0.1",
+	"SemVersion": "2.0.1",
 	"FriendlyName": "FreeSamples",
 	"Description": "Receive some free sample items when you unlock new technologies",
 	"Category": "Modding",
@@ -25,9 +25,9 @@
 	"Plugins": [
 		{
 			"Name": "SML",
-			"SemVersion": "^3.11.1",
+			"SemVersion": "^3.11.3",
 			"Enabled": true
 		}
 	],
-	"GameVersion": ">=415558"
+	"GameVersion": ">=416835"
 }

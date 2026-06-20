@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/UserDefinedStruct.h"
+#include "StructUtils/UserDefinedStruct.h"
 #include "FreeSampleData.generated.h"
 
 /**
